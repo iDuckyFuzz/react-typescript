@@ -56,18 +56,26 @@ const App: React.FC = () => {
     })
   }
 
+  const deleteUser = (e: React.SyntheticEvent) : void => {
+    e.preventDefault();
+    console.log(usersState.allUsers[0])
+  }
+
   const allUsers = usersState.allUsers.map((user, i) => (
-    <div key={i}>
-      <h2>{user.name}</h2>
-      <h2>{user.age}</h2>
-      <h2>{user.job}</h2>
+    <div className="user" key={i}>
+      <h2>Name: {user.name}</h2>
+      <h2>Age: {user.age}</h2>
+      <h2>Job: {user.job}</h2>
+      <form onSubmit={deleteUser}>
+        <button type="submit" value={i}>Delete User</button>
+      </form>
     </div>
   ));
 
   return (
     <div className="container">
       <h1>React With TypeScript</h1>
-      <form onSubmit={submitForm}>
+      <form className="addUserForm" onSubmit={submitForm}>
         <label htmlFor="userName">Name:</label>
         <input
           id="userName"
@@ -93,7 +101,7 @@ const App: React.FC = () => {
           onChange={onChangeHandler}
         />
 
-        <button type="submit">Add User</button>
+        <button className="addUser" type="submit">Add User</button>
       </form>
       {allUsers}
     </div>

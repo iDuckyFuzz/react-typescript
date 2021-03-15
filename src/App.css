@@ -1,19 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+.container {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,17 +7,58 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.addUserForm{
+  width: 250px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.user{
+  width: 300px;
+  border: 1px solid grey;
+  margin: 2px;
+  padding: 2px;
+}
+
+h2{
+  font-size: large;
+  margin: 0;
+}
+
+label{
+  width: 100%;
+}
+
+input{
+  width: 100%;
+  height: 30px;
+}
+
+.addUser{
+  margin-bottom: 20px;
+}
+
+button{
+  background-color: rgb(104, 104, 104);
+  display:inline-block;
+  padding:0.5em 3em;
+  border:0.16em solid #FFFFFF;
+  margin:1em 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:400;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.15s;
+}
+button:hover{
+  color:#DDDDDD;
+  border-color:#DDDDDD;
+}
+button:active{
+  color:#BBBBBB;
+  border-color:#BBBBBB;
 }
