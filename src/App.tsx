@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import User, { UserInt } from './components/User'
 
 //typescript component (react function component FC)
 //let age: number = 20;
@@ -7,13 +8,7 @@ import './App.css';
 //let age: myNumber = 15;
 const App: React.FC = () => {
 
-  interface UserInt {
-    name: string;
-    age: string;
-    job: string;
-  }
-
-  interface allUsersInt{
+  interface allUsersInt {
     currentUser: UserInt;
     allUsers: Array<UserInt>;
   }
@@ -25,6 +20,7 @@ const App: React.FC = () => {
       name: "",
       age: "",
       job: "",
+      deleteUser: () => {}
     },
     allUsers: []
   });
@@ -41,41 +37,46 @@ const App: React.FC = () => {
     })
   }
 
-  const submitForm = (e: React.SyntheticEvent) : void => {
+  const submitForm = (e: React.SyntheticEvent): void => {
     e.preventDefault();
     setUsersState({
       currentUser: {
         name: "",
         age: "",
         job: "",
+        deleteUser: () => {}
       },
-      allUsers:[
+      allUsers: [
         ...usersState.allUsers,
         usersState.currentUser
       ]
     })
   }
 
-  const deleteUser = (e: React.SyntheticEvent) : void => {
-    e.preventDefault();
-    console.log(usersState.allUsers[0])
+  const deleteHandler = (index: number): void => {
+    const filterUsers = usersState.allUsers.filter((user, i) => (
+      index !== i
+    ));
+    setUsersState({
+      ...usersState,
+      allUsers: filterUsers
+    })
   }
 
   const allUsers = usersState.allUsers.map((user, i) => (
-    <div className="user" key={i}>
-      <h2>Name: {user.name}</h2>
-      <h2>Age: {user.age}</h2>
-      <h2>Job: {user.job}</h2>
-      <form onSubmit={deleteUser}>
-        <button type="submit" value={i}>Delete User</button>
-      </form>
-    </div>
+    <User
+      key={i}
+      name={user.name}
+      age={user.age}
+      job={user.job}
+      deleteUser={() => deleteHandler(i)}
+    />
   ));
 
   return (
     <div className="container">
       <h1>React With TypeScript</h1>
-      <form className="addUserForm" onSubmit={submitForm}>
+      <form className="card" onSubmit={submitForm}>
         <label htmlFor="userName">Name:</label>
         <input
           id="userName"
